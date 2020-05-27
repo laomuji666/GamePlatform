@@ -1,10 +1,8 @@
 package com.lmj.gameplatform.mapping;
 
 import com.lmj.gameplatform.model.account.Account;
-import jdk.nashorn.internal.runtime.logging.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -26,7 +24,7 @@ public class AccountMapping {
     private Account account=null;
 
     //如果请求参数不全,会返回该json信息
-    private static final String BAD_REQUEST="{\"str\":\"未正确提供所需参数\"}";
+    private static final String BAD_REQUEST="{\"id\":\"-1\",\"str\":\"未正确提供参数\"}";
 
     @RequestMapping("/account/code/key")
     public Long getCodeKey(){
@@ -53,6 +51,14 @@ public class AccountMapping {
             return BAD_REQUEST;
         }
         return account.login(username,password,codeKey,codeStr);
+    }
+
+    @RequestMapping("/account/update")
+    private String update(String username,String onlineKey){
+        if (username==null ||onlineKey==null) {
+            return BAD_REQUEST;
+        }
+        return account.update(username, onlineKey);
     }
 
     @RequestMapping("/account/all")

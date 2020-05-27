@@ -19,11 +19,9 @@ import java.util.Set;
 @Controller
 public class CodeController {
 
-    //Map codeKey对应CodeData
-    private Map<Long,CodeData> codeDataMap=new HashMap<>();
+    private Map<Long,CodeData> codeDataMap=new HashMap<>();//Map codeKey对应CodeData
 
-    //验证码有效时间 毫秒
-    private static long codeValidTime=60000;
+    private static long codeValidTime=60000;//验证码有效时间 毫秒
 
     //获取codeKey,创建验证码
     public Long getCodeKey(){
@@ -51,12 +49,12 @@ public class CodeController {
     //定时移除验证码
     @Scheduled(fixedRate = 5000)
     private void removeCodeData(){
-        long nowTime=System.currentTimeMillis()-codeValidTime;
+        long validTime=System.currentTimeMillis()-codeValidTime;
         Set<Long> longs = codeDataMap.keySet();
         Iterator<Long> iterator = longs.iterator();
         while (iterator.hasNext()){
             long time =iterator.next();
-            if (time<nowTime) {
+            if (time<validTime) {
                 iterator.remove();
             }
         }

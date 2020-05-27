@@ -21,32 +21,30 @@ class CodeData {
             "0123456789" +
                     "QWERTYUIOPASDFGHJKLZXCVBNM"+
                     "qwertyuiopasdfghjklzxcvbnm";
-    //验证码字符集转为String[]
-    private static final String[] chars=codeChars.split("");
-    //验证码随机的颜色
-    private static final Color[] charsColor={Color.red,Color.white,Color.blue,Color.yellow,Color.green};
-    //验证码的长度
-    private static final int codeLength=4;
-    //验证码的宽高
-    private static final int WIDTH=240,HEIGHT=100;
-    //验证码字符的位置
-    private static final int codeWidth=WIDTH/4,codeHeight=HEIGHT/4*3;
-    //验证码字符的大小
-    private static final Font codeFont= new Font("宋体",Font.ITALIC,70);
-    //验证码字符串
-    private String code=null;
-    //验证码图片
-    private BufferedImage image=null;
-    //可以被直接使用的验证码图片
-    private byte[] bytes=null;
-    //随机数
-    private static final Random random=new Random();
+
+    private static final Color[] charsColor= {Color.red,Color.white, Color.blue,Color.yellow,Color.green};//验证码随机的颜色
+
+    private static final int codeLength=4;//验证码的长度
+
+    private static final int WIDTH=240,HEIGHT=100;//验证码的宽高
+
+    private static final int codeWidth=WIDTH/4,codeHeight=HEIGHT/4*3;//验证码字符的位置
+
+    private static final Font codeFont= new Font("宋体",Font.ITALIC,70);//验证码字符的大小
+
+    private String code=null;//验证码字符串
+
+    private BufferedImage image=null;//验证码图片
+
+    private byte[] bytes=null;//验证码图片
+
+    private static final Random random=new Random();//随机数
 
     //构造方法 创建验证码
     public CodeData(){
         code="";
         for (int i=0;i<codeLength;i++){
-            code+=chars[random.nextInt(chars.length)];
+            code+=codeChars.charAt(random.nextInt(codeChars.length()));
         }
         image=createImageCode();
         ByteArrayOutputStream out = new ByteArrayOutputStream();

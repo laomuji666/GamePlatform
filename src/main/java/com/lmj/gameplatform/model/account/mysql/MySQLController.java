@@ -22,13 +22,11 @@ public class MySQLController {
             "username varchar(40) not null unique," +
             "password varchar(40) not null" +
             ");";
-    //Connection 用于连接数据库
-    private Connection connection=null;
 
-    //Statement 用于对数据库操作
-    private Statement statement=null;
+    private Connection connection=null; //Connection 用于连接数据库
 
-    //构造方法
+    private Statement statement=null; //Statement 用于对数据库操作
+
     //首先连接mysql
     //然后进入对应的数据库里
     MySQLController(){
