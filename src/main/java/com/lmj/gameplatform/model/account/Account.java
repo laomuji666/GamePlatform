@@ -4,6 +4,7 @@ import static com.lmj.gameplatform.model.account.AccountJson.*;
 import com.lmj.gameplatform.model.account.code.CodeController;
 import com.lmj.gameplatform.model.account.mysql.MySQLController;
 import com.lmj.gameplatform.model.account.onlineuser.OnlineUserController;
+import com.lmj.gameplatform.model.account.onlineuser.OnlineUserData;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
@@ -23,6 +24,10 @@ public class Account {
     private CodeController codeController=null;
     @Autowired
     private OnlineUserController onlineUserController=null;
+
+    /*
+        供Mapping使用的接口
+     */
 
     //获取codeKey
     public Long getCodeKey(){
@@ -62,6 +67,22 @@ public class Account {
         }
     }
 
+    //登陆后获取信息
+    public String online(String username,String onlineKey){
+        OnlineUserData data=getOnlineUserData(username, onlineKey);
+        if (data!=null) return data.getLobbyInfo();
+        return null;
+    }
+
+    //手动离线
+    public String offline(String username,String onlineKey){
+        if (onlineUserController.delOnlineUser(username,onlineKey)){
+            return OFFLINE_TRUE;
+        }else {
+            return OFFLINE_FALSE;
+        }
+    }
+
     //更新在线时间
     public String update(String username,String onlineKey){
         if (onlineUserController.updateOnlineUserTime(username, onlineKey)){
@@ -71,9 +92,12 @@ public class Account {
         }
     }
 
+    /*
+        供GameLobby使用的接口
+     */
 
-
-    public String getAllUser(){
-        return mySQLController.getUsers();
+    //成功返回用户信息,失败返回null
+    public OnlineUserData getOnlineUserData(String username, String onlineKey){
+        return onlineUserController.getOnlineUserData(username, onlineKey);
     }
 }

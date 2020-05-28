@@ -30,6 +30,14 @@ public class OnlineUserController {
         return data.getOnlineKey();
     }
 
+    //移除在线用户,成功返回true,失败返回false
+    public boolean delOnlineUser(String username,String onlineKey){
+        OnlineUserData data = onlineUserDataMap.get(username);
+        if (data==null)return false;
+        if (onlineKey.equals(data.getOnlineKey())==false)return false;
+        return onlineUserDataMap.remove(username,data);
+    }
+
     //更新在线用户的在线时间
     public boolean updateOnlineUserTime(String username,String onlineKey){
         OnlineUserData data = onlineUserDataMap.get(username);
@@ -51,5 +59,11 @@ public class OnlineUserController {
                 iterator.remove();
             }
         }
+    }
+
+    //获取在线用户数据
+    public OnlineUserData getOnlineUserData(String username,String onlineKey){
+        OnlineUserData data = onlineUserDataMap.get(username);
+        return data;
     }
 }
