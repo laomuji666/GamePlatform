@@ -40,5 +40,12 @@ public class OnlineUserData {
     //获取大厅信息
     public final String getLobbyInfo(){ return "{\"id:\":\""+lobbyId+"\",\"str\":\""+lobbyName+"\"}"; }
 
-
+    //玩家所在房间id,用于检测玩家是否在房间中,-1表示未加入任何房间
+    private int homeId = -1;
+    public int getHomeId() {
+        return homeId;
+    }
+    public void setHomeId(int homeId) {
+        this.homeId = homeId;
+    }
 }

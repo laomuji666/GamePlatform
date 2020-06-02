@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 
 
-
 /*
     Account
     处理该包下所有功能,将多个模块合并处理
@@ -47,6 +46,10 @@ public class Account {
         if (username.length()<6||password.length()<6 ||username.length()>16||password.length()>16){
             return REGISTER_FALSE_ILLEGAL;
         }
+        String regex = "^[a-z0-9A-Z]+$";
+        if (username.matches(regex)==false || password.matches(regex)==false){
+            return REGISTER_FALSE_ILLEGAL;
+        }
         if (mySQLController.insertUser(username, password)){
             return REGISTER_TRUE;
         }else {
@@ -58,6 +61,10 @@ public class Account {
     public String login(String username,String password,Long codeKey,String codeStr){
         if (codeController.verifyCode(codeKey,codeStr)==false){
             return AccountJson.LOGIN_FALSE_CODE;
+        }
+        String regex = "^[a-z0-9A-Z]+$";
+        if (username.matches(regex)==false || password.matches(regex)==false){
+            return REGISTER_FALSE_ILLEGAL;
         }
         if (mySQLController.selectUser(username, password)){
             String onlineKey=onlineUserController.addOnlineUser(username, codeKey);

@@ -14,7 +14,7 @@ public class OnlineUserController {
 
     private Map<String,OnlineUserData>onlineUserDataMap=new HashMap<>(); //用户名映射用户
 
-    private static final long updateTimeValid = 20000;//更新在线时间有效期
+    private static final long updateTimeValid = 30000;//更新在线时间有效期
 
     //增加在线用户,返回onlineKey
     public String addOnlineUser(String username,Long codeKey){
@@ -57,6 +57,7 @@ public class OnlineUserController {
             String key =iterator.next();
             if (onlineUserDataMap.get(key).getUpdateTime()<validTime) {
                 iterator.remove();
+                System.out.println("玩家离线:"+key);
             }
         }
     }
@@ -64,6 +65,8 @@ public class OnlineUserController {
     //获取在线用户数据
     public OnlineUserData getOnlineUserData(String username,String onlineKey){
         OnlineUserData data = onlineUserDataMap.get(username);
-        return data;
+        if (data==null)return null;
+        if (data.getOnlineKey().equals(onlineKey))return data;
+        else return null;
     }
 }
