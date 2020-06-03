@@ -4,10 +4,8 @@ import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Controller;
 import org.springframework.util.DigestUtils;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Set;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Controller
 public class OnlineUserController {
@@ -16,6 +14,10 @@ public class OnlineUserController {
 
     private static final long updateTimeValid = 30000;//更新在线时间有效期
 
+    private void outDateStr(String data){
+        System.out.println((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date())+data);
+    }
+
     //增加在线用户,返回onlineKey
     public String addOnlineUser(String username,Long codeKey){
         OnlineUserData data = onlineUserDataMap.get(username);
@@ -23,9 +25,11 @@ public class OnlineUserController {
             //如果在线用户中不存在该映射,则增加一个映射
             data=new OnlineUserData(username, DigestUtils.md5DigestAsHex(codeKey.toString().getBytes()));
             onlineUserDataMap.put(username,data);
+            outDateStr(" 登陆 "+username);
         }else {
             //如果已经在线用户中已存在该映射,则更新md5值
             data.setOnlineKey(DigestUtils.md5DigestAsHex(codeKey.toString().getBytes()));
+            outDateStr(" 重连 "+username);
         }
         return data.getOnlineKey();
     }
@@ -35,7 +39,9 @@ public class OnlineUserController {
         OnlineUserData data = onlineUserDataMap.get(username);
         if (data==null)return false;
         if (onlineKey.equals(data.getOnlineKey())==false)return false;
-        return onlineUserDataMap.remove(username,data);
+        boolean remove=onlineUserDataMap.remove(username,data);
+        if (remove)outDateStr(" 手动离线 "+username);
+        return remove;
     }
 
     //更新在线用户的在线时间
@@ -57,7 +63,7 @@ public class OnlineUserController {
             String key =iterator.next();
             if (onlineUserDataMap.get(key).getUpdateTime()<validTime) {
                 iterator.remove();
-                System.out.println("玩家离线:"+key);
+                outDateStr(" 玩家离线 "+key);
             }
         }
     }

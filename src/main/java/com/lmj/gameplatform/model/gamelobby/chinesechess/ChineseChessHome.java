@@ -3,8 +3,6 @@ package com.lmj.gameplatform.model.gamelobby.chinesechess;
 import com.lmj.gameplatform.model.account.onlineuser.OnlineUserData;
 import com.lmj.gameplatform.model.gamelobby.GameLobbyHome;
 
-import static com.lmj.gameplatform.model.gamelobby.GameLobbyJson.*;
-import static com.lmj.gameplatform.model.gamelobby.GameLobbyJson.HOME_FALSE_HOME;
 
 public class ChineseChessHome extends GameLobbyHome {
     private ChineseChess game=new ChineseChess();
