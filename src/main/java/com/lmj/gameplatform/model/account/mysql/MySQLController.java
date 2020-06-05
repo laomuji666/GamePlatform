@@ -1,6 +1,7 @@
 package com.lmj.gameplatform.model.account.mysql;
 
 
+import com.lmj.gameplatform.model.account.onlineuser.OnlineUserController;
 import org.springframework.stereotype.Controller;
 
 import java.sql.*;
@@ -30,6 +31,10 @@ public class MySQLController {
     //首先连接mysql
     //然后进入对应的数据库里
     MySQLController(){
+        reConnect();
+    }
+
+    private void reConnect(){
         connectMySQL();
         useDatabase();
         checkTable();
@@ -85,7 +90,9 @@ public class MySQLController {
         try {
             statement.execute(insertStr);
         } catch (SQLException e) {
-            return false;
+            reConnect();
+            OnlineUserController.outDateStr(" 数据库重连 ");
+            return insertUser(username, password);
         }
         return true;
     }
@@ -104,6 +111,9 @@ public class MySQLController {
             }
         } catch (SQLException e) {
             //查询失败
+            reConnect();
+            OnlineUserController.outDateStr(" 数据库重连 ");
+            return selectUser(username, password);
         }
         return false;
     }

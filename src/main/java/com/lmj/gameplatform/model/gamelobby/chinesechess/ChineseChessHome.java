@@ -17,15 +17,8 @@ public class ChineseChessHome extends GameLobbyHome {
         int who=0;
         if(position=="top")who=2;
         if(position=="bottom")who=1;
-        String[] split = data.split(",");
-        if (split.length==4){
-            int beginX=Integer.parseInt(split[0]);
-            int beginY=Integer.parseInt(split[1]);
-            int endX=Integer.parseInt(split[2]);
-            int endY=Integer.parseInt(split[3]);
-            return game.moveChess(who,beginX,beginY,endX,endY);
-        }
-        return false;
+        return game.moveChess(who,data);
+
     }
 
     @Override

@@ -73,4 +73,5 @@ public class AccountMapping {
         if (username==null ||onlineKey==null) return BAD_REQUEST;
         return account.offline(username, onlineKey);
     }
+
 }

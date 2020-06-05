@@ -21,6 +21,8 @@ class ChineseChess {
     //轮到谁下棋
     private int whoChess=0;//黑为1 红为2
     private String winner;
+    //记录最后落子的位置
+    private String lastPoint="";
     //初始化棋盘信息
     {
         for (int i = 0; i < board.length; i++) {
@@ -61,6 +63,7 @@ class ChineseChess {
         //设置游戏信息
         whoChess=2;
         winner="无";
+        lastPoint="";
     }
 
     //获取所有可落子位置,以"-"分割坐标,以","分割每个位置
@@ -81,6 +84,7 @@ class ChineseChess {
     //获取棋盘信息,黑色不变,红色*10
     public String getGameData() {
         StringBuffer buffer=new StringBuffer();
+        buffer.append(lastPoint+":");
         if (whoChess==1){
             buffer.append("黑:");
         }else if (whoChess==2){
@@ -120,9 +124,15 @@ class ChineseChess {
     }
 
     //移动棋子并进行选手交换
-    public boolean moveChess(int who,int beginX,int beginY,int endX,int endY) {
+    public boolean moveChess(int who,String data) {
         if (who!=whoChess)return false;
         if (isWin()!=0) return false;
+        String[] split = data.split(",");
+        if(split.length!=4)return false;
+        int beginX=Integer.parseInt(split[0]);
+        int beginY=Integer.parseInt(split[1]);
+        int endX=Integer.parseInt(split[2]);
+        int endY=Integer.parseInt(split[3]);
         //检查是否可以下棋,能下棋就下棋,不能下棋就返回false
         if(canChess(beginX, beginY, endX, endY)){
             //下棋并选手轮替
@@ -134,6 +144,7 @@ class ChineseChess {
                 if (isWin()==1)winner="黑";
                 if (isWin()==2)winner="红";
             }
+            lastPoint=data;
             return true;
         }
         return false;

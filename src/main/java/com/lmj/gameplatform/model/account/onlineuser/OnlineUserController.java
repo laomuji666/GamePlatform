@@ -14,7 +14,7 @@ public class OnlineUserController {
 
     private static final long updateTimeValid = 30000;//更新在线时间有效期
 
-    private void outDateStr(String data){
+    public static void outDateStr(String data){
         System.out.println((new SimpleDateFormat("yyyy-MM-dd HH:mm:ss")).format(new Date())+data);
     }
 

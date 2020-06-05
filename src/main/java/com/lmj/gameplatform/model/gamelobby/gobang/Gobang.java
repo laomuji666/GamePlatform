@@ -9,6 +9,8 @@ class Gobang {
     private String whoChess;
     //胜利者的颜色,0无,1黑,2白
     private int winner;
+    //最后落子位置
+    private String lastPoint="";
 
     //重新开始游戏
     public void rePlay() {
@@ -19,6 +21,7 @@ class Gobang {
         }
         whoChess="黑";
         winner=0;
+        lastPoint="";
     }
 
     //检查是否可以下棋
@@ -53,6 +56,7 @@ class Gobang {
             if (key==2) whoChess="黑";
             //检查胜利
             winner=checkWin();
+            lastPoint=x+","+y;
             return true;
         }
         return false;
@@ -95,6 +99,7 @@ class Gobang {
     //获取棋盘数据
     public String getGameData(){
         StringBuffer buffer=new StringBuffer();
+        buffer.append(lastPoint+":");
         //第一位表示轮到谁下棋
         buffer.append(whoChess+":");
         //第二位表示谁胜利

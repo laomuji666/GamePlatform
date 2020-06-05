@@ -200,10 +200,10 @@ public abstract class GameLobbyHome {
     //重新开始,checkReady调用
     public abstract void rePlay();
 
-    //是否允许修改数据
+    //修改游戏数据,由具体的游戏功能决定是否允许修改
     public abstract boolean setGameData(String position,String data);
 
-    //是否允许获取数据
+    //获取游戏数据
     public abstract String getGameData();
 
 

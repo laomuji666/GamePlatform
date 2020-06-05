@@ -16,11 +16,11 @@ import java.util.Random;
     2.getCodePicture:获取验证码图片
  */
 class CodeData {
-    //验证码字符集
+    //验证码字符集,0Oo比较难识别,我决定删除这三个
     private static final String codeChars=
-            "0123456789" +
-                    "QWERTYUIOPASDFGHJKLZXCVBNM"+
-                    "qwertyuiopasdfghjklzxcvbnm";
+            "123456789" +
+                    "QWERTYUIPASDFGHJKLZXCVBNM"+
+                    "qwertyuipasdfghjklzxcvbnm";
 
     private static final Color[] charsColor= {Color.red,Color.white, Color.blue,Color.yellow,Color.green};//验证码随机的颜色
 
