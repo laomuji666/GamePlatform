@@ -84,7 +84,9 @@ class ChineseChess {
     //获取棋盘信息,黑色不变,红色*10
     public String getGameData() {
         StringBuffer buffer=new StringBuffer();
+        //第一部分为最后落子坐标
         buffer.append(lastPoint+":");
+        //第二部分为轮到谁下棋
         if (whoChess==1){
             buffer.append("黑:");
         }else if (whoChess==2){
@@ -92,7 +94,9 @@ class ChineseChess {
         }else{
             buffer.append("无:");
         }
+        //第三部分为谁胜利
         buffer.append(winner+":");
+        //第四部分为棋盘数据,每个以"-"分割,每行以","分割
         for (int i = 0; i < board.length; i++) {
             for (int j = 0; j < board[i].length; j++) {
                 Pieces pieces=board[i][j];

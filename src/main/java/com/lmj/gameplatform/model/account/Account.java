@@ -66,10 +66,6 @@ public class Account {
         if (codeController.verifyCode(codeKey,codeStr)==false){
             return AccountJson.LOGIN_FALSE_CODE;
         }
-        String regex = "^[a-z0-9A-Z]+$";
-        if (username.matches(regex)==false || password.matches(regex)==false){
-            return REGISTER_FALSE_ILLEGAL;
-        }
         if (mySQLController.selectUser(username, password)){
             String onlineKey=onlineUserController.addOnlineUser(username, codeKey);
             return LOGIN_TRUE_BEGIN+onlineKey+LOGIN_TRUE_END;

@@ -1,5 +1,6 @@
 package com.lmj.gameplatform.mapping;
 
+import com.lmj.gameplatform.model.Notify;
 import com.lmj.gameplatform.model.account.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
@@ -72,6 +73,22 @@ public class AccountMapping {
     private String offline(String username,String onlineKey){
         if (username==null ||onlineKey==null) return BAD_REQUEST;
         return account.offline(username, onlineKey);
+    }
+
+    @Autowired
+    private Notify notify;
+
+    @RequestMapping("/notify/get")
+    private String getNotify(){
+        return notify.getNotify();
+    }
+
+    @RequestMapping("/notify/set")
+    private String setNotify(String username,String password,String data){
+        if (username==null || password==null ||notify==null){
+            return BAD_REQUEST;
+        }
+        return notify.setNotify(username, password, data);
     }
 
 }

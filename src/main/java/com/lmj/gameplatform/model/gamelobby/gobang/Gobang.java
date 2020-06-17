@@ -99,11 +99,13 @@ class Gobang {
     //获取棋盘数据
     public String getGameData(){
         StringBuffer buffer=new StringBuffer();
+        //第1部分表示最后下棋的坐标
         buffer.append(lastPoint+":");
-        //第一位表示轮到谁下棋
+        //第2部分表示轮到谁下棋
         buffer.append(whoChess+":");
-        //第二位表示谁胜利
+        //第3部分表示谁胜利
         buffer.append(winner+":");
+        //第4位表示棋盘数据
         //每个以-分割,每行以,分割
         for (int i=0;i<boardXSize;i++){
             for (int j = 0; j < boardYSize; j++) {
