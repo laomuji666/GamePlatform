@@ -40,7 +40,7 @@ POST
 username:要注册的账号
 password:要注册的密码
 codeKey:通过"获取codeKey"接口得到该参数
-code:验证码字符串
+codeStr:验证码字符串
 返回结果:
 {"id":"0","str":"注册成功"}
 {"id":"1","str":"注册失败,该账号已被注册"}
@@ -59,7 +59,7 @@ POST
 username:要注册的账号
 password:要注册的密码
 codeKey:通过"获取codeKey"接口得到该参数
-code:验证码字符串
+codeStr:验证码字符串
 返回结果:
 {"id":"0","str":"onlineKey"}
 {"id":"1","str":"登陆失败,账号或密码错误"}

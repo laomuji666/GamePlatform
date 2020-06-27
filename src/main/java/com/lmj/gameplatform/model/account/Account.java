@@ -63,9 +63,14 @@ public class Account {
 
     //登陆
     public String login(String username,String password,Long codeKey,String codeStr){
-        if (codeController.verifyCode(codeKey,codeStr)==false){
-            return AccountJson.LOGIN_FALSE_CODE;
+        //关闭登陆验证码
+        //if (codeController.verifyCode(codeKey,codeStr)==false) return AccountJson.LOGIN_FALSE_CODE;
+
+        String regex = "^[a-z0-9A-Z]+$";
+        if (username.matches(regex)==false || password.matches(regex)==false){
+            return LOGIN_FALSE_ILLEGAL;
         }
+
         if (mySQLController.selectUser(username, password)){
             String onlineKey=onlineUserController.addOnlineUser(username, codeKey);
             return LOGIN_TRUE_BEGIN+onlineKey+LOGIN_TRUE_END;

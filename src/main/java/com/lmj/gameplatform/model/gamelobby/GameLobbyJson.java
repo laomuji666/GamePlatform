@@ -43,9 +43,9 @@ public class GameLobbyJson {
 
     //获取准备状态
     public static final String HOME_READY_GET_YES="{\"id\":\"0\",\"str\":\"已开始\"}";
-    public static final String HOME_READY_GET_NO="{\"id\":\"1\",\"str\":\"top:no,bottom:no\"}";
-    public static final String HOME_READY_GET_NO_ONLY_TOP="{\"id\":\"1\",\"str\":\"top:yes,bottom:no\"}";
-    public static final String HOME_READY_GET_NO_ONLY_BOTTOM="{\"id\":\"1\",\"str\":\"top:no,bottom:yes\"}";
+    public static final String HOME_READY_GET_NO="{\"id\":\"1\",\"str\":\"先手:no,后手:no\"}";
+    public static final String HOME_READY_GET_NO_ONLY_TOP="{\"id\":\"1\",\"str\":\"先手:yes,后手:no\"}";
+    public static final String HOME_READY_GET_NO_ONLY_BOTTOM="{\"id\":\"1\",\"str\":\"先手:no,后手:yes\"}";
 
     //发送数据
     public static final String HOME_DATA_SET_TRUE="{\"id\":\"0\",\"str\":\"成功\"}";

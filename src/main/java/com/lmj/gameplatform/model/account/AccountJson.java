@@ -19,7 +19,7 @@ public class AccountJson {
     public static final String LOGIN_TRUE_END="\"}";
     public static final String LOGIN_FALSE_WRONG="{\"id\":\"1\",\"str\":\"登陆失败,账号或密码错误\"}";
     public static final String LOGIN_FALSE_CODE="{\"id\":\"2\",\"str\":\"登陆失败,验证码错误\"}";
-
+    public static final String LOGIN_FALSE_ILLEGAL="{\"id\":\"3\",\"str\":\"登陆失败,账号或密码长度6-16且只能为大小写字母或数字\"}";
     //手动离线
     public static final String OFFLINE_TRUE="{\"id\":\"0\",\"str\":\"离线成功\"}";
     public static final String OFFLINE_FALSE="{\"id\":\"1\",\"str\":\"离线失败\"}";

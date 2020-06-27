@@ -7,7 +7,7 @@ import org.springframework.stereotype.Controller;
 
 @Controller
 public class ChineseChessGameLobby extends GameLobby {
-    private static final ChineseChessHome[] homes=new ChineseChessHome[20];
+    private static final ChineseChessHome[] homes=new ChineseChessHome[25];
     static {
         for (int i=0;i<homes.length;i++){
             homes[i]=new ChineseChessHome();

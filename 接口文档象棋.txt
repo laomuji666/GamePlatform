@@ -2,7 +2,7 @@
 该接口文档主要说明和接口文档GameLobby不同的地方
 
 1.homeId
-象棋的homeId为2
+象棋的homeId为1
 
 2.url
 象棋的url为"/ChineseChess"

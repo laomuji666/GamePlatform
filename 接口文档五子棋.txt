@@ -2,7 +2,7 @@
 该接口文档主要说明和接口文档GameLobby不同的地方
 
 1.homeId
-五子棋的homeId为1
+五子棋的homeId为2
 
 2.url
 五子棋的url为"/Gobang".
